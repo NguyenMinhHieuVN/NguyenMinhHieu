@@ -1,2 +1,126 @@
-Hieu
+1.
+#include<iostream>
+#include<math.h>
 
+using namespace std;
+int main()
+{
+
+	cout <<"HIEU"<< endl;
+	system("pause");
+	return 0;
+}
+2.
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+{
+	float a, b;
+	cout << "a=";
+	cin >> a;
+	cout << "b=";
+	cin >> b;
+	cout << "a+b=" << a + b << endl;
+	cout << "a-b=" << a - b << endl;
+	cout << "a*b=" << a * b << endl;
+	cout << "a/b=" << a / b << endl;
+	system("pause");
+	return 0;
+}
+3.
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+{
+    setlocale(0, "");
+	float b,x,c;
+	cout << "b=";
+	cin >> b;
+	cout << "c=";
+	cin >> c;
+	if (b == 0)
+	{
+		cout << "нет решений" << endl;
+	}
+	else
+	{
+		x = (-c)/ b;
+		cout << "имеет решение x=" << x << endl;
+	}
+	system("pause");
+	return 0;
+}
+4.
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+{
+	setlocale(0, "");
+	float a, b, c, x1, x2, x, D;
+	cout << "a=";
+	cin >> a;
+	cout << "b=";
+	cin >> b;
+	cout << "c=";
+	cin >> c;
+	if (a == 0)
+	{
+		if (b == 0)
+			cout << "нет решений" << endl;
+		else 
+			cout << "x=" << (-c) / b << endl;
+	}
+	else
+	{
+		D = b * b - 4 * a * c;
+		if (D > 0)
+		{
+			cout << "x1=" << (-b + sqrt(D)) / (2 * a) << endl;
+			cout << "x2=" << (-b - sqrt(D)) / (2 * a) << endl;
+		}
+		else if (D == 0)
+		{
+			cout << "x=" << (-b) / (2 * a) << endl;
+		}
+		else
+		{
+		cout << "нет решений" << endl;
+		}
+		system("pause");
+		return 0;
+	}
+}
+5.
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+{
+	bool window, day, lamp;
+	cout << "window open(1) or close(0)?(0/1):";
+	cin >> window;
+	cout << "day(1) or night(0)?(0/1):";
+	cin >> day;
+	cout << "lamp turn on(1) or turn off(0)?(0/1):";
+	cin >>lamp;
+	if ((window && day) || lamp)
+	{
+		cout << "the room is light" << endl;
+	}
+			
+	else
+	{
+
+		cout << "this room so dark"<< endl;
+	}
+		system("pause");
+		return 0;
+	
+}
