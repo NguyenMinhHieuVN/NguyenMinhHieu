@@ -14,9 +14,9 @@ int main()
 	cin >> R;
 	cout << "Please enter r: ";
 	cin >> r;
-	if ( r > R )
+	if ( r > R||h<=0 )
 	{
-		cout << "re-enter the value r less than R" << endl;
+		cout << "re-enter the value " << endl;
 	}
 	else
 	{
