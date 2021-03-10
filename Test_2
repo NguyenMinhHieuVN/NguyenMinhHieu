@@ -1,0 +1,193 @@
+//C++ СамостоятельнаяРабота_Файлы
+#include<iostream>
+#include<stdlib.h>
+#include<conio.h>
+#include <fstream>
+#include <Windows.h>
+using namespace std;
+class fn
+{
+public:
+	void task2_1(int);
+	void task2_2(int);
+	void task2_3(int);
+	void task2_4(int);
+	void task2_5(int);
+
+};
+void fn::task2_1(int)
+{
+	setlocale(0, "");
+	int n, a;
+	cout << "N = : ";
+	cin >> n;
+	while (cin.fail())
+	{
+		string fail;
+		cin.clear();
+		cin >> fail;
+		cout << "Just entered the character " << "" << "\nPlease enter again the number." << endl;
+		cout << "N = : ";
+		cin >>n;
+
+	}
+	if (n > 0) {
+		cout << "положительное" << endl;
+	}
+	else {
+		cout << "не положительное" << endl;
+	}
+	a = n % 2;
+	if (a == 0) {
+		cout << "четное" << endl;
+	}
+	else {
+		cout << "не четное" << endl;
+	}
+	if (n > (-3)) {
+		cout << "число превосходит -3" << endl;
+	}
+	else {
+		cout << "число не превосходит -3" << endl;
+	}
+	
+}
+void fn::task2_2(int)
+{
+	setlocale(0, "");
+	float  x, y;
+	cout << "Please enter x: ";
+	cin >> x;
+	while (cin.fail())
+	{
+		string fail;
+		cin.clear();
+		cin >> fail;
+		cout << "Just entered the character " << "" << "\nPlease enter again the number." << endl;
+		cout << "Please enter x: ";
+		cin >> x;
+
+	}
+	if (x < 0)
+	{
+
+		cout << "y = " << abs(x + 1) << endl;
+
+	}
+	else if (x > 0)
+	{
+		if (x <= 1)
+			cout << "нет решений" << endl;
+		else
+			cout << "y =" << log(abs(x - 1)) << endl;
+	}
+
+	else
+	{
+		cout << "y = " << (1 / 3) * (sqrt(9 - x)) << endl;
+	}
+}
+void fn::task2_3(int)
+{
+
+	setlocale(0, "");
+	for (int i = 35; i <= 87; i++)
+		if ((i % 7 == 1) || (i % 7 == 2) || (i % 7 == 5))
+			cout << i << " ";
+}
+void fn::task2_4(int)
+{
+	cout << "Table of function: y = (x*x + x + 1)*log(abs(x)+1) " << endl;
+	for (float i = -5; i <= 5; i += 0.5)
+	{
+		cout << "x =" << i << "\t | y = " << (i * i + i + 1) * log(abs(i) + 1) << endl;
+	}
+}
+void fn::task2_5(int)
+{
+	char c;
+	long long result;
+	int number;
+	do {
+		result = 1;
+		cout << "Input number: ";
+		cin >> number;
+		while (cin.fail())
+		{
+			string fail;
+			cin.clear();
+			cin >> fail;
+			cout << "Just entered the character " << "" << "\nPlease enter again the number." << endl;
+			cout << "Input number: ";
+			cin >> number;
+
+		}
+		for (int i = 1; i <= number; i++)
+		{
+			result *= i;
+		}
+		cout << "Factorial of " << number << " is " << result << endl;
+
+		cout << "To exit press Y and Enter ";
+		cin >> c;
+	} while (c != 'Y');
+}
+
+int main()
+{
+	int ch;
+	fn obj;
+	int i = 0;
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	cout << "\n\t\tfunctions";
+	while (1)
+	{
+		cout << "\n1. task2_1" << endl << "2. task2_2" << endl << "3. task2_3" << endl << "4. task2_4" << endl << "5. task2_5" << endl << "Please enter: ";
+		cin >> ch;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(32767, '\n');
+		}
+		switch (ch)
+		{
+		case 1:
+		{
+
+			obj.task2_1(i);
+			break;
+		}
+
+		case 2:
+		{
+
+			obj.task2_2(i);
+			break;
+
+		case 3:
+		{
+			obj.task2_3(i);
+			break;
+		}
+		case 4:
+		{
+			obj.task2_4(i);
+			break;
+		}
+		case 5:
+		{
+			obj.task2_5(i);
+			break;
+		}
+
+		default:
+			cout << "Input is false_Please input your answer (1/2/3/4/5)" << endl;
+			break;
+		}
+
+		}
+	}
+}
+
+
