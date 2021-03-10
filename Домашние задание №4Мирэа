@@ -1,0 +1,577 @@
+//Домашнее задание № 4
+#include <iostream>
+#include <fstream>
+#include <math.h> 
+#include <stdio.h>
+#include <cstring>
+#include <conio.h>
+#include < iomanip >
+#include <algorithm> //copy arr
+using namespace std;
+const char MAX = 50;
+const char C55 = 55;
+const char C48 = 48;
+
+
+void Conver10ToAll(int n, int b) { // Dec to All, n la so, con b la he co so can chuyen sang
+	if (n > 0 && b >= 2 && b <= 16) {
+		int i;
+		char arr[MAX];
+		int count = 0;
+		int m;
+		while (n > 0) {
+			if (b > 10) {
+				m = n % b;
+				if (m >= 10) {
+					arr[count] = (char)(m + C55);
+					count++;
+				}
+				else {
+					arr[count] = (char)(m + C48);
+					count++;
+				}
+			}
+			else {
+				arr[count] = (char)((n % b) + C48);
+				count++;
+			}
+			n = n / b;
+		}
+		for (i = count - 1; i >= 0; i--) {
+			cout << arr[i];
+		}
+		cout << endl;
+	}
+	else {
+		cout << "Input is false" << endl;
+	}
+}
+void DaoNguoc(char a[], int n) {
+	int i;
+	for (i = 0; i < n / 2; i++) {
+		int temp = a[i];
+		a[i] = a[n - 1 - i];
+		a[n - 1 - i] = temp;
+	}
+}
+void CharToInt(char a[], int b[], int n) {
+	int i;
+	for (i = 0; i < n; i++) {
+		if (a[i] == 'A')
+			b[i] = 10;
+		else if (a[i] == 'B')
+			b[i] = 11;
+		else if (a[i] == 'C')
+			b[i] = 12;
+		else if (a[i] == 'D')
+			b[i] = 13;
+		else if (a[i] == 'E')
+			b[i] = 14;
+		else if (a[i] == 'F')
+			b[i] = 15;
+		else
+			b[i] = (int)a[i] - 48;
+	}
+}
+
+double ConvertAllTo10(int a[], int n, int x) {
+	int i;
+	double s = 0;
+	for (i = 0; i < n; i++) {
+		s += a[i] * pow(x, i);
+	}
+	return s;
+}
+
+void In(char a[], int n) {
+	int i;
+	for (i = 0; i < n; i++) {
+		cout << a[i];
+	}
+}
+class fn
+{
+public:
+	void task4_1(int);
+	void task4_2(double);
+	void task4_3(int);
+	void task4_4(int, int);
+	void task4_5(double, double);
+	void task4_6(string, int, int, int);
+	void task4_7(int);
+	void task4_8(int, int);
+	void task4_9(int, int);
+};
+// 1.Файл
+void fn::task4_1(int)
+{
+	int i, sum = 0;
+	fstream file;
+	file.open("C:\\Users\\PhongVu\\Desktop\\OOP\\number.txt", ios::out);
+	int num[10];
+	for (i = 0; i < 10; i++)
+	{
+		cout << "Enter the number[" << i + 1 << "] :";
+		cin >> num[i];
+		while (cin.fail())
+		{
+			string fail;
+			cin.clear();
+			cin >> fail;
+			cout << "Just entered the character " << "" << "\nPlease enter again the number." << endl;
+			cout << "Enter the number[" << i + 1 << "] :";
+			cin >> num[i];
+
+		}
+		sum += num[i];
+		file << num[i] << " ";
+	}
+	file.close();
+	cout << "The sum of the numbers is: " << sum;
+}
+
+//2.Знак числа
+void fn::task4_2(double)
+{
+	double x;
+	cout << "Enter x = ";
+	cin >> x;
+	while (cin.fail())
+	{
+		string fail;
+		cin.clear();
+		cin >> fail;
+		cout << "Just entered the character " << "" << "\nPlease enter the number." << endl;
+		cout << "Enter x = ";
+		cin >> x;
+
+	}
+	if (x > 0)
+		cout << "Sign(x) = 1 " << endl;
+	else if (x == 0)
+		cout << "Sign(x) = 0 " << endl;
+	else
+		cout << "Sign(x) = -1 " << endl;
+}
+//3.Геометрические фигуры
+void fn::task4_3(int)
+{
+#define PI 3.14159
+	int k;
+	char h;
+	while (1) {
+		cout << "1.Area of Rectangle(Pryamougol-nik)" << endl << "2.Area of Triangle(Treugol-nik)" << endl << "3.Area of Circle(Krug)" << endl << "Please enter: ";
+		cin >> k;
+		while (cin.fail())
+		{
+			string fail;
+			cin.clear();
+			cin >> fail;
+			cout << "Just entered the character " << "" << "\nPlease enter the number(1/2/3)." << endl;
+			cin >> k;
+
+		}
+		switch (k)
+		{
+		case 1: {
+			double a, b;
+			cout << "Enter length a = ";
+			cin >> a;
+			cout << "Enter width b = ";
+			cin >> b;
+			if (a >= 0 && b >= 0) {
+				cout << "Area of Rectangle: S = a . b = " << a * b << endl;
+			}
+			else
+			{
+				cout << "Input is false" << endl;
+			}
+			break;
+		}
+		case 2: {
+			double n, b, c, d, s, x, y, z;
+			cout << "Enter edge n = "; cin >> n;
+			cout << "Enter edge b = "; cin >> b;
+			cout << "Enter edge c = "; cin >> c;
+			x = n + b - c;
+			y = n + c - n;
+			z = n + c - b;
+			if (x > 0 && y > 0 && z > 0) {
+				d = (n + b + c) / 2;
+				s = sqrt(d * (d - n) * (d - b) * (d - c));
+				cout << "Area of Triangle: S = sqrt(d*(d-n)*(d-b)*(d-c)) = " << s << endl;
+			}
+			else
+			{
+				cout << "Input is false" << endl;
+			}
+			break;
+		}
+		case 3: {
+			double r;
+			cout << "Enter radius r = "; cin >> r;
+			if (r > 0) {
+				cout << "Area of Circle: S = PI . r^2 =  " << PI * r * r << endl;
+			}
+			else
+			{
+				cout << "Input is false" << endl;
+			}
+			break;
+		}
+		default:
+			cout << "Input is false_input (1/2/3)" << endl;
+			break;
+		}
+		//cout << "\nDo you want to continue(y/n): ";
+		//cin >> h;
+		//if (h == 'n')
+		break;
+	}
+}
+
+//4. Былая слава
+void fn::task4_4(int, int)
+{
+	int i, j;
+	for (i = 0; i < 13; i++)
+	{
+		for (j = 0; j < 20; j++)
+		{
+			if (i > 0 && i < 7 && j >= 0 && j < 8)
+			{
+				cout << " * ";
+			}
+			else
+			{
+				cout << "___";
+			}
+		}
+		cout << endl;
+	}
+	//return 0;
+}
+
+//5.Синусоида
+void fn::task4_5(double, double)
+{
+	for (double y = 1.1; y > -1.1; y -= 0.1) {
+		for (double x = -4; x < 4; x += 0.1) {
+			if (abs(sin(x) - y) < 0.05)
+				cout << "*";
+			else if (x<0.05 && x>-0.05)
+				cout << "|";
+			else if (y<0.05 && y>-0.05)
+				cout << "-";
+			else
+				cout << " ";
+		}
+		cout << '\n';
+	}
+}
+
+//6.Автоматный распознаватель
+void fn::task4_6(string, int, int, int)
+{
+#define MAX 35
+	int len, i, k, a[MAX];
+	char lama[MAX];
+	cout << "Roman numerals ---- I V X L C D M" << endl;
+	cout << "Enter Roman numerals: ";
+	cin >> lama;
+	len = strlen(lama);
+	for (i = 0; i < len; i++) {
+		if (lama[i] == 'I')
+			a[i] = 1;
+		else if (lama[i] == 'V')
+			a[i] = 5;
+		else if (lama[i] == 'X')
+			a[i] = 10;
+		else if (lama[i] == 'L')
+			a[i] = 50;
+		else if (lama[i] == 'C')
+			a[i] = 100;
+		else if (lama[i] == 'D')
+			a[i] = 500;
+		else if (lama[i] == 'M')
+			a[i] = 1000;
+		else
+		{
+			cout << "Input is false" << endl;
+			return;
+		}
+	}
+	k = a[len - 1];
+	for (i = len - 1; i > 0; i--) {
+		if (a[i] > a[i - 1])
+			k = k - a[i - 1];
+		else if (a[i] == a[i - 1] || a[i] < a[i - 1]) {
+			k = k + a[i - 1];
+		}
+
+	}
+	cout << "\nValue = " << k << endl;
+}
+
+//7. Генератор случайных чисел. 
+void fn::task4_7(int)
+{
+	int m, s = 1, i, c, j;
+	cout << "Input m = "; cin >> m;
+	cout << "Input i = "; cin >> i;
+	cout << "Input c = "; cin >> c;
+	while (cin.fail())
+	{
+		string fail;
+		cin.clear();
+		cin >> fail;
+		cout << "\nJust entered the character " << "" << "\nPlease enter again the number m = ,i = ,c = ." << endl;
+		cin >> m >> i >> c;
+
+	}
+	cout << "Random: ";
+	for (j = 0; j < 500; j++) {
+		s = (m * s + i) % c;
+		cout << s << "  ";
+	}
+}
+
+//8. Умножение матриц
+void fn::task4_8(int, int)
+{
+	float a[3][4] = {
+		{5, 2, 0, 10},
+		{3, 5, 2, 5},
+		{20, 0, 0, 0}
+	};
+	float b[4][2] = {
+	{1.2, 0.5},
+	{2.8, 0.4},
+	{5, 1},
+	{2, 1.5}
+	};
+	float c[3][2]{
+		{0, 0},
+		{0, 0},
+		{0, 0}
+	};
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 2; j++)
+			for (int k = 0; k < 4; k++)
+				c[i][j] += a[i][k] * b[k][j];
+
+	// Вывод матриц в консоль )))
+	cout << " Matrix A" << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			cout << setw(4) << a[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+	cout << " Matrix B" << endl;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 2; j++) {
+			cout << setw(4) << b[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+	cout << " Matrix C=AxB" << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 2; j++) {
+			cout << setw(5) << c[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+	float max1 = c[0][0], max2 = c[0][1], min2 = c[0][1], min1 = c[0][0], sum1 = 0, sum2 = 0, sumall = 0, sub = 0;
+
+	// GNLN,NN
+	for (int i = 0; i < 3; i++) {
+		if (i) {
+			if (c[i][0] > max1) {
+				max1 = c[i][0];
+			}
+		}
+	}
+	cout << "earned the most money = " << max1 << endl;
+	for (int i = 0; i < 3; i++) {
+		if (c[i][0] < min1) {
+			min1 = c[i][0];
+		}
+	}
+
+	cout << "earned the least money = " << min1 << endl;
+
+
+	for (int i = 0; i < 3; i++) {
+		if (c[i][1] > max2) {
+			max2 = c[i][1];
+		}
+	}
+	cout << "gets the most commissions = " << max2 << endl;
+
+	for (int i = 0; i < 3; i++) {
+		if (c[i][1] < min2) {
+			min2 = c[i][1];
+		}
+	}
+	cout << "gets the least commissions = " << min2 << endl;
+	//tinh tong
+	for (int i = 0; i < 3; i++) {
+		sum2 += c[i][0];
+	}
+	cout << "Total money earned S1 = " << sum2 << endl;
+	for (int j = 0; j < 3; j++) {
+		sum1 += c[j][1];
+	}
+	cout << "Total money commission S2 = " << sum1 << endl;
+
+	sub = sum2 - sum1;
+	cout << "Total money passed through the hands of sellers S3 = " << sub << endl;
+
+}
+
+//9. Системы счисления
+void fn::task4_9(int, int)
+{
+	int  x, y, len;
+	char a;
+	char k[MAX], kin[MAX];
+	int l[MAX];
+	double s;
+	cout << "    A     =>    B" << endl;
+	cout << "      x           y" << endl;
+	cout << "Enter x (2 <= x <= 16) " << endl;
+	cout << "x = "; cin >> x;
+	while (cin.fail())
+	{
+		string fail;
+		cin.clear();
+		cin >> fail;
+		cout << "\nJust entered the character " << "" << "\nPlease enter again the numbers x = , a = , y = ." << endl;
+		cin >> x;
+
+	}
+
+	if (x >= 2 && x <= 16) {
+		if (x == 10) {
+			cout << "\nEnter A (A > 0)" << endl;
+			cout << "A = "; cin >> a;
+			cout << "\nEnter y (2 <= x <= 16) " << endl;
+			cout << "y = "; cin >> y;
+			cout << endl;
+			cout << "    " << a << "     =     ";
+			//Conver10ToAll(a, y);
+			cout << "      " << x << "             " << y << endl;
+		}
+		else {
+			cout << "\nEnter A (A > 0)" << endl;
+			cout << "A = ";
+			cin.ignore();
+			cin.getline(k, 30);
+			len = strlen(k);
+			copy_n(k, len, kin); // copy arr
+			DaoNguoc(k, len);
+			CharToInt(k, l, len);
+			cout << "\nEnter y (2 <= x <= 16) " << endl;
+			cout << "y = "; cin >> y;
+			s = ConvertAllTo10(l, len, x);
+			cout << endl;
+			cout << "    ";
+			In(kin, len);
+			cout << "     =     ";
+			Conver10ToAll(s, y);
+			cout << "      " << x << "             " << y << endl;
+		}
+	}
+	else {
+		cout << "Input is false" << endl;
+	}
+}
+
+int main()
+{
+#define MAX 35
+	int ch;
+	double n, b, c, d, s, x, y, z, r;
+	float m = 0;
+	int a[10];
+	int i, j, k, len;
+	fn obj;
+	char lama[MAX];
+	cout << "\n\t\tfunctions";
+	while (1)
+	{
+		cout << "\n1. task4_1" << endl << "2. task4_2" << endl << "3. task4_3" << endl << "4. task4_4" << endl << "5. task4_5" << endl << "6. task4_6" << endl << "7. task4_7" << endl << "8. task4_8" << endl << "9. task4_9" << endl << "Please enter: ";
+		cin >> ch;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(32767, '\n');
+		}
+		switch (ch)
+		{
+		case 1:
+		{
+			obj.task4_1(a[10]);
+			break;
+		}
+
+		case 2:
+		{
+			x = 0;
+			obj.task4_2(x);
+			break;
+		}
+		case 3:
+		{   s = 1;
+		obj.task4_3(s);
+		break;
+		}
+		case 4:
+		{
+			i = 0;
+			j = 0;
+			obj.task4_4(i, j);
+			break;
+		}
+		case 5:
+		{   x = 0;
+		y = 0;
+		obj.task4_5(x, y);
+		break;
+		}
+		case 6:
+		{ len = 0;
+		i = 0;
+		k = 0;
+		obj.task4_6(lama, i, k, len);
+		break;
+		}
+		case 7:
+		{  s = 0;
+		obj.task4_7(s);
+		break;
+		}
+		case 8:
+		{
+			j = 0;
+			i = 0;
+			obj.task4_8(i, j);
+			break;
+		}
+		case 9:
+		{
+			j = 0;
+			i = 0;
+			obj.task4_9(i, j);
+			break;
+		}
+		default:
+			cout << "Input is false_Please input your answer (1/2/3/4/5/6/7/8/9)" << endl;
+			break;
+		}
+	}
+}
